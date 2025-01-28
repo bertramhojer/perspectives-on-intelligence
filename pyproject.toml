@@ -1,0 +1,137 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "intelligence-community-survey"
+version = "0.1.0"
+description = "Analysis of the Intelligence Community Survey"
+authors = [
+  { name = "Bertram", email = "berh@itu.dk" },
+]
+readme = "README.md"
+requires-python = ">=3.12"
+
+
+dependencies = [
+    "pydantic",
+    "pydantic-settings",
+    "typer",
+    "pandas",
+    "numpy",
+    "scikit-learn",
+    "scipy",
+    "matplotlib",
+    "cartopy",
+    "networkx",
+    "seaborn",
+    "statsmodels",
+    "prince",
+]
+
+[project.scripts]
+
+[dependency-groups]
+dev = [
+    "ruff",
+    "codespell",
+    "pre-commit",
+    "ipython",
+    "ipykernel",
+    "invoke",
+]
+
+test = [
+    "pytest",
+    "pipreqs",
+    "mypy",
+]
+
+[tool.uv]
+default-groups = ["dev", "test"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = [
+    "F",
+    "E",
+    "W",
+    "C90",
+    "I",
+    "N",
+    "D",
+    "UP",
+    "YTT",
+    "ASYNC",
+    "S",
+    "BLE",
+    "B",
+    "A",
+    "COM",
+    "C4",
+    "DTZ",
+    "T10",
+    "DJ",
+    "EM",
+    "EXE",
+    "FA",
+    "ISC",
+    "ICN",
+    "LOG",
+    "PIE",
+    "PYI",
+    "PT",
+    "Q",
+    "RSE",
+    "RET",
+    "SLF",
+    "SLOT",
+    "SIM",
+    "TID",
+    "TCH",
+    "INT",
+    "ERA",
+    "PGH",
+]
+ignore = [
+    "F821",
+    "F841",
+    "D100",
+    "D107",
+    "D211",
+    "D212",
+    "S301",
+    "S311",
+    "S603",
+    "S605",
+    "S607",
+    "B008",
+    "B028",
+    "B905",
+    "COM812",
+    "ISC001",
+    "TC003",
+]
+exclude = [
+    ".bzr", ".direnv", ".eggs", ".git", ".hg", ".mypy_cache", ".nox", ".pants.d", ".pytype", ".ruff_cache", ".svn",
+    ".tox", ".venv", "__pypackages__", "_build", "buck-out", "build", "dist", "node_modules", "venv",
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.codespell]
+skip = "*.pdf,*.ipynb,*.drawio,*.json"
+
+[tool.typos.default.extend-identifiers]
+arange = "arange"
+
+[tool.typos.default.extend-words]
+Ue = "Ue"
+Hashi = "Hashi"
+
+[tool.setuptools]
+packages.find = {where = ["src"], include = ["project*"]}
