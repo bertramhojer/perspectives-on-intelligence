@@ -18,15 +18,15 @@ data = pd.read_csv("data/processed/data_encoded.csv", sep=",", encoding="ISO-885
 
 # Set style parameters with large default font sizes
 plt.rcParams['font.family'] = 'Times New Roman'
-plt.rcParams['font.size'] = 20  # Increased base font size
+plt.rcParams['font.size'] = 24  # Increased base font size
 plt.style.use('bmh')
 plt.rcParams['axes.facecolor'] = '#f5f5f5'
 plt.rcParams['figure.facecolor'] = 'white'
-plt.rcParams['axes.labelsize'] = 22  # Increased axis label size
-plt.rcParams['axes.titlesize'] = 28  # Increased title size
-plt.rcParams['xtick.labelsize'] = 20  # Increased tick label size
-plt.rcParams['ytick.labelsize'] = 20  # Increased tick label size
-plt.rcParams['legend.fontsize'] = 20  # Increased legend font size
+plt.rcParams['axes.labelsize'] = 26  # Increased axis label size
+plt.rcParams['axes.titlesize'] = 32  # Increased title size
+plt.rcParams['xtick.labelsize'] = 24  # Increased tick label size
+plt.rcParams['ytick.labelsize'] = 24  # Increased tick label size
+plt.rcParams['legend.fontsize'] = 24  # Increased legend font size
 
 
 def save_figure(save_path, format='pdf'):
@@ -73,14 +73,14 @@ def plot_area_by_career_stage(data, save_path=None, format='pdf'):
 
     # Customize the plot with larger font sizes
     ax.set_xticks(range(len(shortened_labels)))
-    ax.set_xticklabels(shortened_labels, ha='right', rotation=45, fontsize=20)
-    ax.set_xlabel('Research Area', fontsize=24)
-    ax.set_ylabel('Respondents', fontsize=24)
-    ax.set_title('Distribution of Research Areas by Career Stage', fontsize=28, pad=20)
+    ax.set_xticklabels(shortened_labels, ha='right', rotation=45, fontsize=24)
+    ax.set_xlabel('Research Area', fontsize=28)
+    ax.set_ylabel('Respondents', fontsize=28)
+    ax.set_title('Distribution of Research Areas by Career Stage', fontsize=32, pad=10)
 
     # Add legend with larger font size
     ax.legend(loc='upper right', bbox_to_anchor=(0.98, 0.98), 
-             title='Career Stage', fontsize=22, title_fontsize=24)
+             title='Career Stage', fontsize=20, title_fontsize=22)
 
     # Adjust layout to prevent label cutoff
     plt.tight_layout()
@@ -117,7 +117,7 @@ def plot_world_map(data, region_type="origin_region", save_path=None, format='pd
         if region in region_counts.index:
             count = region_counts[region]
             # Scale circle size based on count
-            size = 2500 * np.sqrt(count / max_count)  # Increased base circle size
+            size = 7000 * np.sqrt(count / max_count)  # Increased base circle size
             
             # Create color based on count
             color = plt.cm.Blues(0.3 + 0.7 * (count / max_count))
@@ -129,18 +129,18 @@ def plot_world_map(data, region_type="origin_region", save_path=None, format='pd
                     transform=ccrs.PlateCarree(),
                     label=f'{region}')  # Added count to label
 
-    # Add legend with larger font size
-    ax.legend(loc='center left', 
-            bbox_to_anchor=(1.05, 0.5),
-            frameon=True,
-            facecolor='white',
-            edgecolor='none',
-            fontsize=30)  # Increased legend font size
+    # # Add legend with larger font size
+    # ax.legend(loc='center left', 
+    #         bbox_to_anchor=(1.05, 0.5),
+    #         frameon=True,
+    #         facecolor='white',
+    #         edgecolor='none',
+    #         fontsize=30)  # Increased legend font size
 
     # Add title with larger font size
     plt.title('Geographic Distribution of Respondents', 
-            pad=20,  # Increased padding
-            fontsize=36)  # Increased title font size
+            pad=5,  # Increased padding
+            fontsize=38)  # Increased title font size
 
     # Adjust layout
     plt.tight_layout()
@@ -198,23 +198,23 @@ def plot_criteria_by_occupation(data, save_path=None, format='pdf'):
     # Customize the plot with larger font sizes
     ax.set_yticks(y)
     ax.set_yticklabels(df_percentages['Criterion'],
-                    fontsize=22)  # Increased y-axis label size
-    ax.set_xlabel('Percentage of Respondents in Group', fontsize=24)  # Increased x-axis label size
+                    fontsize=26)  # Increased y-axis label size
+    ax.set_xlabel('Percentage of Respondents in Group', fontsize=28)  # Increased x-axis label size
     ax.set_title('Selection of Intelligence Criteria by Occupation', 
-                fontsize=28,  # Increased title size
-                pad=20)  # Added more padding to title
+                fontsize=32,  # Increased title size
+                pad=10)  # Added more padding to title
 
     # Add legend with larger font size
-    ax.legend(bbox_to_anchor=(.48, 1),
+    ax.legend(bbox_to_anchor=(.42, 1),
             loc='upper left',
-            fontsize=16)  # Increased legend font size
+            fontsize=18)  # Increased legend font size
 
     # Set x-axis to percentages and add grid
     ax.set_xlim(0, 100)
     ax.xaxis.grid(True, linestyle='--', alpha=0.7)
 
     # Increase tick label sizes
-    ax.tick_params(axis='both', labelsize=18)  # Increased tick label size
+    ax.tick_params(axis='both', labelsize=22)  # Increased tick label size
 
     # Remove top and right spines
     ax.spines['top'].set_visible(False)
@@ -277,24 +277,24 @@ def plot_criteria_by_career_stage(data, save_path=None, format='pdf'):
     # Customize the plot with larger font sizes
     ax.set_yticks(y)
     ax.set_yticklabels(df_percentages['Criterion'],
-                    fontsize=22,  # Increased y-axis label size
+                    fontsize=24,  # Increased y-axis label size
                     ha='right')
-    ax.set_xlabel('Percentage of Respondents in Group', fontsize=24)  # Increased x-axis label size
+    ax.set_xlabel('Percentage of Respondents in Group', fontsize=28)  # Increased x-axis label size
     ax.set_title('Selection of Intelligence Criteria by Career Stage', 
-                fontsize=28,  # Increased title size
-                pad=20)  # Added more padding to title
+                fontsize=32,  # Increased title size
+                pad=10)  # Added more padding to title
 
     # Add legend with larger font size
-    ax.legend(bbox_to_anchor=(0.4, 1),
+    ax.legend(bbox_to_anchor=(0.29, 1),
             loc='upper left',
-            fontsize=16)  # Increased legend font size
+            fontsize=18)  # Increased legend font size
 
     # Set x-axis to percentages and add grid
     ax.set_xlim(0, 100)
     ax.xaxis.grid(True, linestyle='--', alpha=0.7)
 
     # Increase tick label sizes
-    ax.tick_params(axis='both', labelsize=20)  # Increased tick label size
+    ax.tick_params(axis='both', labelsize=24)  # Increased tick label size
 
     # Remove top and right spines
     ax.spines['top'].set_visible(False)
@@ -355,7 +355,7 @@ def plot_sankey_diagram(data, save_path=None, format='pdf'):
         ax.text(pos[0]+width/2, pos[1], 
                 fr'$n={int(height*sum(current_values))}$', 
                 va='center', ha='center', 
-                fontsize=34)  # Increased font size for node labels
+                fontsize=32)  # Increased font size for node labels
 
     def draw_flow(start, end, value, total_flow, color):
         # Calculate proportional heights on both sides
@@ -433,8 +433,8 @@ def plot_sankey_diagram(data, save_path=None, format='pdf'):
     ax.set_ylim(-0.1, 1.1)
     plt.axis('off')
     plt.title('Belief Transition:\nCurrent intelligence to future intelligence', 
-             fontsize=28,  # Increased title font size
-             pad=20)  # Added more padding
+             fontsize=32,  # Increased title font size
+             pad=10)  # Added more padding
 
     plt.tight_layout()
 
@@ -538,7 +538,7 @@ def plot_correlation_graph(data, save_path=None, format='pdf'):
     labels = {node: f"{node}\n({int(G.nodes[node]['responses'])})"
             for node in G.nodes()}
     nx.draw_networkx_labels(G, pos, labels, 
-                          font_size=24,  # Increased label font size
+                          font_size=28,  # Increased label font size
                           font_weight='bold')
 
     # Create legend with increased font sizes
@@ -556,12 +556,12 @@ def plot_correlation_graph(data, save_path=None, format='pdf'):
             title=r'Correlation ($\phi$)',
             loc='upper right',
             bbox_to_anchor=(1, 1),
-            fontsize=26,  # Increased legend font size
-            title_fontsize=28)  # Increased legend title font size
+            fontsize=30,  # Increased legend font size
+            title_fontsize=32)  # Increased legend title font size
 
     plt.title('Intelligence Criteria Network',
             pad=10,  # Added more padding
-            fontsize=36,  # Kept large title font size
+            fontsize=40,  # Kept large title font size
             fontweight='bold')
     plt.axis('off')
 

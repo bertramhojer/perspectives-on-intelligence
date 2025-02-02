@@ -150,7 +150,9 @@ def get_processed_datasets():
     # Load data
     labels = pd.read_csv("data/raw/labels.csv", sep=';', encoding="ISO-8859-1", names=["label", "choiceValue", "choiceText"])
     data = pd.read_csv("data/raw/dataset.csv", sep=';', encoding="ISO-8859-1")
-    data = data.dropna(subset=['s_1']).reset_index(drop=True)
+    print("Full dataset: ", len(data))
+    data = data[data['statoverall_4'] == 1].reset_index(drop=True)
+    print("Filtered dataset: ", len(data))
 
     # Create single mapping
     single_mapping = {
