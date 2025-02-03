@@ -30,6 +30,8 @@ dependencies = [
 ]
 
 [project.scripts]
+generate-report = "survey.report:main"
+generate-figures = "survey.figures:main"
 
 [dependency-groups]
 dev = [

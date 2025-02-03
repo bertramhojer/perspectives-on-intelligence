@@ -2,7 +2,7 @@ import pandas as pd
 import json
 import os
 from datetime import datetime
-from analyzer import IntelligenceResearchAnalysis
+from survey.analysis import IntelligenceResearchAnalysis
 
 def export_json_results(results, output_dir='results/'):
     """Convert analysis results to JSON-serializable format and export."""
