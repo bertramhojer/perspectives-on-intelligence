@@ -4,6 +4,26 @@ Analysis of the results of the Perspectives on Intelligence Community Survey. Th
 
 For more information on the project see the [Project Page](https://bertramhojer.github.io/projects/intelligence-survey/)!
 
+## Replication
+
+If you wish to run the analysis we have defined the following commands that can be run using uv. First install all dependencies by running:
+```
+uv sync
+```
+
+### Generating analysis report
+```
+uv run generate-report
+```
+
+### Generating visualisations from the [Paper](https://bertramhojer.github.io/projects/intelligence-survey/). 
+```
+uv run generate-figures
+```
+
+Be aware to rerun the analysis you need to download the curated dataset. Contact the first author (berh)at(itu).(dk) to get access to the curated survey responses.
+
+
 ## Project structure
 
 The directory structure of the project looks like this:

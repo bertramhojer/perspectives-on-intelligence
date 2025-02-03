@@ -30,6 +30,7 @@ dependencies = [
 ]
 
 [project.scripts]
+process-data = "survey.data:main"
 generate-report = "survey.report:main"
 generate-figures = "survey.figures:main"
 

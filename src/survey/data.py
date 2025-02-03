@@ -227,18 +227,30 @@ def get_comment_dataset():
     return comments_df
 
 
+def main():
+
+    try: 
+        
+        processed_data, dummy_data = get_processed_datasets()
+        comments_df = get_comment_dataset()
+
+        print(processed_data.head())    
+        print(dummy_data.head())
+
+        processed_data.to_csv("data/processed/data.csv")
+        dummy_data.to_csv("data/processed/data_encoded.csv")
+        processed_data.to_csv("data/processed/data.csv")
+        dummy_data.to_csv("data/processed/data_encoded.csv")
+        dummy_data.to_csv("data/processed/data_encoded.csv")
+
+        comments_df.to_csv("data/processed/comments.csv", index=False)
+
+    except Exception as e:
+
+        print("Couldn't load and process data")
+        print("Exception: \n", e)
+
+
 if __name__ == "__main__":
 
-    processed_data, dummy_data = get_processed_datasets()
-    comments_df = get_comment_dataset()
-
-    print(processed_data.head())    
-    print(dummy_data.head())
-
-    processed_data.to_csv("data/processed/data.csv")
-    dummy_data.to_csv("data/processed/data_encoded.csv")
-    processed_data.to_csv("data/processed/data.csv")
-    dummy_data.to_csv("data/processed/data_encoded.csv")
-    dummy_data.to_csv("data/processed/data_encoded.csv")
-
-    comments_df.to_csv("data/processed/comments.csv", index=False)
+    main()
