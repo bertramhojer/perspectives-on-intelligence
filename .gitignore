@@ -1,5 +1,10 @@
 docs/site/
 
+# files
+src/survey/analysis-old.py
+src/survey/report-old.py
+src/survey/analysis.ipynb
+
 # data
 data/*
 results/*

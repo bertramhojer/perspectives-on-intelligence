@@ -2,7 +2,7 @@ from typing import List
 
 import numpy as np
 import pandas as pd
-from data_mappings import (criteria_mapping, entity_intelligence_mapping,
+from survey.data_mappings import (criteria_mapping, entity_intelligence_mapping,
                            intelligence_test_mapping, lacking_criteria_mapping,
                            occupation_map, research_goals_mapping,
                            research_mapping)
@@ -24,7 +24,6 @@ def extract_choice_mapping(df, prefix):
     filtered_df = df[mask]
     
     # Create mapping dictionary
-    # Convert choiceValue to string to handle potential numeric values
     mapping = {row['choiceValue']: row['choiceText'] for _, row in filtered_df.iterrows()}
     
     return mapping
@@ -145,13 +144,13 @@ prefix_map = {
 }
 
 
-def get_processed_datasets():
+def get_processed_datasets(restrict_to_valid=True):
 
     # Load data
     labels = pd.read_csv("data/raw/labels.csv", sep=';', encoding="ISO-8859-1", names=["label", "choiceValue", "choiceText"])
     data = pd.read_csv("data/raw/dataset.csv", sep=';', encoding="ISO-8859-1")
     print("Full dataset: ", len(data))
-    data = data[data['statoverall_4'] == 1].reset_index(drop=True)
+    data = data[(data['statoverall_4'] == 1) & (data['s_1']==1)].reset_index(drop=True)
     print("Filtered dataset: ", len(data))
 
     # Create single mapping
@@ -180,6 +179,8 @@ def get_processed_datasets():
     processed_data = pd.concat([processed_data, mapped_data], axis=1)
 
     processed_data = processed_data[processed_data['research_goals'].apply(lambda x: x != [])].reset_index(drop=True)
+    if restrict_to_valid:
+        processed_data = processed_data[~processed_data['career_stage'].isin(["Other", "Prefer not to say"])].reset_index(drop=True)
 
     dummy_data = create_dummy_variables(
         df=processed_data,
@@ -231,16 +232,13 @@ def main():
 
     try: 
         
-        processed_data, dummy_data = get_processed_datasets()
+        processed_data, dummy_data = get_processed_datasets(restrict_to_valid=True)
         comments_df = get_comment_dataset()
 
         print(processed_data.head())    
         print(dummy_data.head())
 
         processed_data.to_csv("data/processed/data.csv")
-        dummy_data.to_csv("data/processed/data_encoded.csv")
-        processed_data.to_csv("data/processed/data.csv")
-        dummy_data.to_csv("data/processed/data_encoded.csv")
         dummy_data.to_csv("data/processed/data_encoded.csv")
 
         comments_df.to_csv("data/processed/comments.csv", index=False)
@@ -252,5 +250,4 @@ def main():
 
 
 if __name__ == "__main__":
-
     main()
