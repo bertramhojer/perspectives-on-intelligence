@@ -36,11 +36,12 @@ The directory structure of the project looks like this:
 ├── src/                      # Source code
 │   ├── survey/
 │   │   ├── __init__.py
-│   │   ├── analyzer.py       # analysis script
-│   │   ├── data_mappings.py
-│   │   ├── data.py           # data preprocessing
-│   │   ├── demo_mappings.py
+│   │   ├── analysis.py       # analysis script
+│   │   ├── data_mappings.py  # map for processing
+│   │   ├── data.py           # data processing
+│   │   ├── demo_mappings.py  # map for processing
 │   │   ├── report.py         # generate summary report
+│   │   ├── visualize.ipynb   # visualization notebook
 │   │   └── visualize.py      # visualization script
 ├── .gitignore
 ├── pyproject.toml            # Python project file
