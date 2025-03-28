@@ -144,7 +144,7 @@ prefix_map = {
 }
 
 
-def get_processed_datasets(restrict_to_valid=True):
+def get_processed_datasets(restrict_to_valid=False):
 
     # Load data
     labels = pd.read_csv("data/raw/labels.csv", sep=';', encoding="ISO-8859-1", names=["label", "choiceValue", "choiceText"])
@@ -178,7 +178,7 @@ def get_processed_datasets(restrict_to_valid=True):
     processed_data = pd.DataFrame(single_mapping)
     processed_data = pd.concat([processed_data, mapped_data], axis=1)
 
-    processed_data = processed_data[processed_data['research_goals'].apply(lambda x: x != [])].reset_index(drop=True)
+    #processed_data = processed_data[processed_data['research_goals'].apply(lambda x: x != [])].reset_index(drop=True)
     if restrict_to_valid:
         processed_data = processed_data[~processed_data['career_stage'].isin(["Other", "Prefer not to say"])].reset_index(drop=True)
 
@@ -232,11 +232,9 @@ def main():
 
     try: 
         
-        processed_data, dummy_data = get_processed_datasets(restrict_to_valid=True)
+        processed_data, dummy_data = get_processed_datasets(restrict_to_valid=False)
+        print(len(processed_data))
         comments_df = get_comment_dataset()
-
-        print(processed_data.head())    
-        print(dummy_data.head())
 
         processed_data.to_csv("data/processed/data.csv")
         dummy_data.to_csv("data/processed/data_encoded.csv")

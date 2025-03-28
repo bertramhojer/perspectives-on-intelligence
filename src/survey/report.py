@@ -8,12 +8,14 @@ sys.stdout = open(f'results/results-{date}.txt','wt')
 
 # Load processed data
 data = pd.read_csv('data/processed/data_encoded.csv')
+data["origin_region_coarse"] = [txt.split(":")[0] for txt in data["origin_region"]]
+data["work_region_coarse"] = [txt.split(":")[0] for txt in data["work_region"]]
 
 # extract all criteria columns
 criteria_cols = [col for col in data.columns if col.startswith('crit_')]
 agenda_cols = [col for col in data.columns if col.startswith('goal_')]
 occupation_cols = [col for col in data.columns if col.startswith('occ_')]
-demographics = ['career_stage', 'primary_area']
+demographics = ['career_stage', 'primary_area', 'origin_region_coarse', 'work_region_coarse']
 
 def demographic_analysis_loop(data, demographic_col, criteria_cols):
     for criterion in criteria_cols:
@@ -72,7 +74,7 @@ def main():
     
     print("\n--- LLM perception across demographics for future intelligence ---")
     for demo in demographics:
-         print("\n--- {demo} ---")
+         print(f"\n--- {demo} ---")
          demographic_intelligence_perception(data, demo, 'llm_intelligence_future')
 
     # 4. Analyze research agenda relationship with LLM perception
