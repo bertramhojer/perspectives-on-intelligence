@@ -16,7 +16,7 @@ uv sync
 uv run generate-report
 ```
 
-### Generating visualisations from the [Paper](https://bertramhojer.github.io/projects/intelligence-survey/). 
+### Generating visualisations from the [Paper](https://bertramhojer.github.io/content/projects/2025-seeming-intelligence). 
 ```
 uv run generate-figures
 ```
